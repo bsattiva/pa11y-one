@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Accessibility Report For "file:///pa11y.html" (Fri Nov 03 2023 13:28:52 GMT+0000 (UTC))</title>
+    <style>html, body {margin: 0;padding: 0;background-color: #fff;font-family: Arial, Helvetica, sans-serif;font-size: 16px;line-height: 22px;color: #333;}li {margin-bottom: 15px;}h1, h2, p, pre, ul {margin-top: 0;margin-bottom: 0;}h1 {margin-bottom: 10px;font-size: 24px;line-height: 24px;}h2 {font-size: 16px;}pre {white-space: pre-wrap;overflow: auto;}.page {max-width: 800px;margin: 0 auto;padding: 25px;}.counts {margin-top: 30px;font-size: 20px;}.count {display: inline-block;padding: 5px;border-radius: 5px;border: 1px solid #eee;}.clean-list {margin-left: 0;padding-left: 0;list-style: none;}.results-list {margin-top: 30px;}.result {padding: 10px;border-radius: 5px;border: 1px solid #eee;}.error {background-color: #fdd;border-color: #ff9696;}.warning {background-color: #ffd;border-color: #e7c12b;}.notice {background-color: #eef4ff;border-color: #b6d0ff;}</style>
+</head>
+<body>
+<div class="page">
+
+</div>
+</body>
+</html><script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=17');
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' +
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script>
