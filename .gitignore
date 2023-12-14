@@ -25,6 +25,9 @@
 .idea/**/dbnavigator.xml
 
 
+# targer
+target/
+
 # File-based project format
 *.iws
 
