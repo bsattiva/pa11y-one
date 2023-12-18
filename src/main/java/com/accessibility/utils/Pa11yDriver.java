@@ -40,6 +40,12 @@ public class Pa11yDriver implements DriverSteps {
         Steps.addStep(new Step(selector, "", mills, "waitFor"));
     }
 
+    /**
+     * the method which is getting pa11y accessibility results from pa11y-one container
+     * @param hostname String value where the pa11y-one container is hosted
+     * @param port String value where the pa11y-one container is hosted
+     * @param scenario the scenario id or name - to be shown in html report
+     */
     @Override
     public void testAccessibility(final String hostname, final String port, final String scenario) {
         var backend = hostname + ":" + port + "/run-accessibility-test";
